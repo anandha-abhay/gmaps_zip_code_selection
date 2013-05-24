@@ -44,7 +44,7 @@ function initialize() {
   var geocoder = new google.maps.Geocoder();
 
   var mapOptions = {
-    center: new google.maps.LatLng(41.8817767, -87.6371461),
+    center: new google.maps.LatLng(41.98032, -87.902313),
     zoom: 9,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     draggable: false
