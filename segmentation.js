@@ -115,6 +115,7 @@ function initialize() {
           });
         });
         obj.marker.setVisible(false);
+        obj.visible = false;
       }
     });
   });
@@ -147,6 +148,7 @@ function initialize() {
           //new google.maps.Size(40 * Math.floor((obj.count / zipCountMax)), 110 * Math.floor((obj.count * zipCountMax))),
           title: obj.zip + ":" + obj.count
         });
+        obj.visible = true;
         var checkBox = $("#"+obj.zip);
         var $obj = $(obj);
         $obj.bind("selected", checkBox, function(e){
@@ -190,9 +192,11 @@ function initialize() {
     var bounds = selectionIndicator.getBounds();
     _.each(mapEntities, function(obj) {
       if(bounds.contains(obj.latLng)){
-        var $obj = $(obj);
-        $obj.trigger('selected');
-        obj.marker.setIcon(obj.selectedIcon);
+        if(obj.visible) {
+          var $obj = $(obj);
+          $obj.trigger('selected');
+          obj.marker.setIcon(obj.selectedIcon);
+        }
       }
     });
   };
@@ -208,12 +212,14 @@ function initialize() {
   var setVisibleZipMarkers = function(bool) {
     _.each(zipcodes, function(obj) {
       obj.marker.setVisible(bool);
+      obj.visible = bool;
     });
   };
 
   var setVisibleMetroMarkers = function(bool) {
     _.each(metroCodes, function(obj) {
       obj.marker.setVisible(bool);
+      obj.visible = bool;
     });
   };
 
